@@ -43,8 +43,7 @@ public class CarController {
 
 	@PostMapping(value = "/cars")
 	public ResponseEntity<SuccessResponse> saveCarInfo(@RequestBody Car car) {
-		SuccessResponse response = carService.saveCar(car);
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+		return ResponseEntity.status(HttpStatus.OK).body(carService.saveCar(car));
 	}
 
 	@PutMapping(value = "/cars")
