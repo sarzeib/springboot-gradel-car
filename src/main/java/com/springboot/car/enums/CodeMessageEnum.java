@@ -1,13 +1,19 @@
 package com.springboot.car.enums;
 
-public enum ErrorMessageEnum {
+public enum CodeMessageEnum {
 
-	CITIZEN_NOT_FOUND(1401, "Car Not Found");
+	UNHANDLED_EXCEPTION(1101, "Unhandled Exception Occurred"),
+	CITIZEN_NOT_FOUND(1401, "Resource Not Found"),
+	
+	
+	SAVE_SUCCESSFUL(1601, "Car Successfully Saved"),
+	UPDATE_SUCCESSFUL(1701, "Car Successfully Updated"),
+	DELETE_SUCCESSFUL(1701, "Car Successfully Deleted");
 	
 	private int errorCode;
 	private String errorMsg;
 	
-	ErrorMessageEnum(int errorCode, String errorMsg){
+	CodeMessageEnum(int errorCode, String errorMsg){
 		this.setErrorCode(errorCode);
 		this.setErrorMsg(errorMsg);
 	}

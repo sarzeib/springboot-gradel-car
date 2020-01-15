@@ -1,26 +1,26 @@
 package com.springboot.car.exception;
 
-import com.springboot.car.enums.ErrorMessageEnum;
+import com.springboot.car.enums.CodeMessageEnum;
 
 public class ResourceNotFoundException extends Exception {
 
 	private static final long serialVersionUID = 1L;
-	private ErrorMessageEnum errorMessageEnum;
+	private CodeMessageEnum errorMessageEnum;
 
-	public ResourceNotFoundException(ErrorMessageEnum errorMessageEnum){
+	public ResourceNotFoundException(CodeMessageEnum errorMessageEnum){
 		this.setErrorMessageEnum(errorMessageEnum);
 	}
 	
-	public ResourceNotFoundException(ErrorMessageEnum errorMessageEnum, Exception e) {
+	public ResourceNotFoundException(CodeMessageEnum errorMessageEnum, Exception e) {
 		super(e);
 		this.setErrorMessageEnum(errorMessageEnum);
 	}
 
-	public ErrorMessageEnum getErrorMessageEnum() {
+	public CodeMessageEnum getErrorMessageEnum() {
 		return errorMessageEnum;
 	}
 
-	public void setErrorMessageEnum(ErrorMessageEnum errorMessageEnum) {
+	public void setErrorMessageEnum(CodeMessageEnum errorMessageEnum) {
 		this.errorMessageEnum = errorMessageEnum;
 	}
 	

@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.car.bean.SuccessResponse;
+import com.springboot.car.enums.CodeMessageEnum;
+import com.springboot.car.exception.ResourceNotFoundException;
 import com.springboot.car.model.Car;
 import com.springboot.car.repository.CarRepository;
 
@@ -20,8 +23,10 @@ public class CarServiceImpl implements CarService{
 	}
 
 	@Override
-	public Optional<Car> findById(Integer id) {
-		return carRepo.findById(id);
+	public Car findById(Integer id) throws ResourceNotFoundException{
+		Optional<Car> optCar = carRepo.findById(id);
+		Car car = optCar.orElseThrow(()-> new ResourceNotFoundException(CodeMessageEnum.CITIZEN_NOT_FOUND));
+		return car;
 	}
 
 	@Override
@@ -30,18 +35,39 @@ public class CarServiceImpl implements CarService{
 	}
 
 	@Override
-	public void udpateCar(Car car) {
+	public SuccessResponse udpateCar(Car car) throws ResourceNotFoundException {
+		Optional<Car> optCar = carRepo.findById(car.getId());
+		optCar.orElseThrow(()-> new ResourceNotFoundException(CodeMessageEnum.CITIZEN_NOT_FOUND));
 		carRepo.save(car);
+		return SuccessResponse.builder()
+				.code(CodeMessageEnum.UPDATE_SUCCESSFUL.getErrorCode())
+				.message(CodeMessageEnum.UPDATE_SUCCESSFUL.getErrorMsg())
+				.success(true)
+				.build();
+		
 	}
 
 	@Override
-	public void deleteCarById(Integer id) {
+	public SuccessResponse deleteCarById(Integer id)  throws ResourceNotFoundException{
+		Optional<Car> optCar = carRepo.findById(id);
+		optCar.orElseThrow(()-> new ResourceNotFoundException(CodeMessageEnum.CITIZEN_NOT_FOUND));
 		carRepo.deleteById(id);
+		return SuccessResponse.builder()
+				.code(CodeMessageEnum.DELETE_SUCCESSFUL.getErrorCode())
+				.message(CodeMessageEnum.DELETE_SUCCESSFUL.getErrorMsg())
+				.success(true)
+				.build();
+				
 	}
 
 	@Override
-	public void saveCar(Car car) {
+	public SuccessResponse saveCar(Car car) {
 		carRepo.save(car);
+		return SuccessResponse.builder()
+				.code(CodeMessageEnum.SAVE_SUCCESSFUL.getErrorCode())
+				.message(CodeMessageEnum.SAVE_SUCCESSFUL.getErrorMsg())
+				.success(true)
+				.build();
 	}
 
 }
