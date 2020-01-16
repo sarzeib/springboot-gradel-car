@@ -35,9 +35,10 @@ public class CarServiceImpl implements CarService{
 	}
 
 	@Override
-	public SuccessResponse udpateCar(Car car) throws ResourceNotFoundException {
-		Optional<Car> optCar = carRepo.findById(car.getId());
+	public SuccessResponse udpateCar(Integer id, Car car) throws ResourceNotFoundException {
+		Optional<Car> optCar = carRepo.findById(id);
 		optCar.orElseThrow(()-> new ResourceNotFoundException(CodeMessageEnum.CITIZEN_NOT_FOUND));
+		car.setId(id);
 		carRepo.save(car);
 		return SuccessResponse.builder()
 				.code(CodeMessageEnum.UPDATE_SUCCESSFUL.getErrorCode())

@@ -3,12 +3,17 @@ package com.springboot.car.enums;
 public enum CodeMessageEnum {
 
 	UNHANDLED_EXCEPTION(1101, "Unhandled Exception Occurred"),
+	JSON_PROCESSING_EXCEPTION(1102, "Exception Occurred during JSON Parsing"),
+	JSON_MAPPING_EXCEPTION(1103, "Exception Occurred during JSON Mapping"),
+	
 	CITIZEN_NOT_FOUND(1401, "Resource Not Found"),
 	
 	
 	SAVE_SUCCESSFUL(1601, "Car Successfully Saved"),
 	UPDATE_SUCCESSFUL(1701, "Car Successfully Updated"),
 	DELETE_SUCCESSFUL(1701, "Car Successfully Deleted");
+	
+	
 	
 	private int errorCode;
 	private String errorMsg;

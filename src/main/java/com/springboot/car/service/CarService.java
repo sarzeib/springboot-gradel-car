@@ -11,7 +11,7 @@ public interface CarService {
 	public Car findById(Integer Id) throws ResourceNotFoundException;
 	public List<Car> findAllCar();
 	public SuccessResponse saveCar(Car car);
-	public SuccessResponse udpateCar(Car car) throws ResourceNotFoundException;
+	public SuccessResponse udpateCar(Integer id, Car car) throws ResourceNotFoundException;
 	public SuccessResponse deleteCarById(Integer id) throws ResourceNotFoundException;
 
 }
